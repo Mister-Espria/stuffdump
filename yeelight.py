@@ -56,13 +56,15 @@ SUPPORT_YEELIGHT_RGB = (SUPPORT_YEELIGHT |
 EFFECT_ALARM = "Alarm"
 EFFECT_DISCO = "Disco"
 EFFECT_STROBE = "Strobe epilepsy!"
-EFFECT_COLOR_STROBE = "Color Strobe"
+EFFECT_COLOR_STROBE = "Color strobe"
 EFFECT_POLICE = "Police"
 EFFECT_POLICE2 = "Police2"
 EFFECT_CHRISTMAS = "Christmas"
+EFFECT_RGB = "RGB"
+EFFECT_RGB_TRANS = "RGB trans"
 EFFECT_ENJOY = "Enjoy"
-EFFECT_RANDOM_LOOP = "Random_loop"
-EFFECT_RANDOM_FASTLOOP = "Random_fastloop"
+EFFECT_RANDOM_LOOP = "Random loop"
+EFFECT_RANDOM_FASTLOOP = "Random fastloop"
 EFFECT_SLOWDOWN = "Slowdown"
 EFFECT_WHATSAPP_NOTIFY = "WhatsApp Notify"
 EFFECT_FACEBOOK_NOTIFY = "Facebook Notify"
@@ -77,6 +79,8 @@ YEE_EFFECT_LIST = [
     EFFECT_POLICE,
     EFFECT_POLICE2,
     EFFECT_CHRISTMAS,
+    EFFECT_RGB,
+    EFFECT_RGB_TRANS,
     EFFECT_ENJOY,
     EFFECT_RANDOM_LOOP,
     EFFECT_RANDOM_FASTLOOP,
@@ -443,6 +447,35 @@ class YeelightLight(Light):
                 transitions.append(
                   RGBTransition(0, 255, 0, brightness=self.brightness, duration=duration))
                 transitions.append(SleepTransition(duration=3000))
+                flow = Flow(count=count, transitions=transitions)
+
+            if effect == EFFECT_RGB:
+                count = 0
+                duration = 300
+
+                transitions = list()
+                transitions.append(
+                  RGBTransition(255, 0, 0, brightness=self.brightness, duration=duration))
+                transitions.append(SleepTransition(duration=3000))
+                transitions.append(
+                  RGBTransition(0, 255, 0, brightness=self.brightness, duration=duration))
+                transitions.append(SleepTransition(duration=3000))
+                transitions.append(
+                  RGBTransition(0, 0, 255, brightness=self.brightness, duration=duration))
+                transitions.append(SleepTransition(duration=3000))
+                flow = Flow(count=count, transitions=transitions)
+
+            if effect == EFFECT_RGB_TRANS:
+                count = 0
+                duration = 10000
+
+                transitions = list()
+                transitions.append(
+                  RGBTransition(255, 0, 0, brightness=self.brightness, duration=duration))
+                transitions.append(
+                  RGBTransition(0, 255, 0, brightness=self.brightness, duration=duration))
+                transitions.append(
+                  RGBTransition(0, 0, 255, brightness=self.brightness, duration=duration))
                 flow = Flow(count=count, transitions=transitions)
 
             if effect == EFFECT_ENJOY:
