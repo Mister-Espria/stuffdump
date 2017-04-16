@@ -317,7 +317,7 @@ class YeelightLight(Light):
 
             transitions = list()
             transitions.append(
-                RGBTransition(255, 0, 0, brightness=10, duration=duration))
+                RGBTransition(red, green, blue, brightness=10, duration=duration))
             transitions.append(SleepTransition(
                 duration=transition))
             transitions.append(
@@ -480,12 +480,13 @@ class YeelightLight(Light):
 
             if effect == EFFECT_ENJOY:
                 count = 0
+                duration = 40000
 
                 transitions = list()
                 transitions.append(
-                  TemperatureTransition(1700, duration=400000))
+                  TemperatureTransition(1700, duration=duration))
                 transitions.append(
-                  TemperatureTransition(6500, duration=400000))
+                  TemperatureTransition(6500, duration=duration))
                 flow = Flow(count=count, transitions=transitions)
 
             if effect == EFFECT_RANDOM_LOOP:
