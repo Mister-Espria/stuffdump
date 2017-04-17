@@ -155,11 +155,6 @@ class YeelightLight(Light):
         """Flag supported features."""
         return self._supported_features
 
-    # @property
-    # def effect_list(self):
-        # """Return the list of supported effects."""
-        # return YEE_EFFECT_LIST
-
     @property
     def effect_list(self):
         """Return the list of supported effects."""
